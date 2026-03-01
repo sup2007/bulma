@@ -409,8 +409,12 @@
 }
 
 @mixin ltr-property($property, $spacing, $right: true) {
-  $normal: if($right, "right", "left");
-  $opposite: if($right, "left", "right");
+  $normal: "right";
+  $opposite: "left";
+  @if not $right {
+    $normal: "left";
+    $opposite: "right";
+  }
 
   @if iv.$rtl {
     #{$property}-#{$opposite}: $spacing;
@@ -420,8 +424,12 @@
 }
 
 @mixin ltr-position($spacing, $right: true) {
-  $normal: if($right, "right", "left");
-  $opposite: if($right, "left", "right");
+  $normal: "right";
+  $opposite: "left";
+  @if not $right {
+    $normal: "left";
+    $opposite: "right";
+  }
 
   @if iv.$rtl {
     #{$opposite}: $spacing;
